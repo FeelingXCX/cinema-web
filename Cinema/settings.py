@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'Cinema.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'Inacap.2025',
+        'HOST': 'cinema-database.cfjjv64awszi.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
