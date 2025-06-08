@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body class="container my-4">
+    <div class="alert alert-info display-3 text-center">CINEMA</div>
+    {% if peli %}
+    <h1 class="display-4">Funciones Disponibles</h1>
+    <table class="table">
+        <thead> 
+          <tr>
+            <th scope="col">Pelicula</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Asientos</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for p in peli %}
+            {% if p.asiento == 0 %}
+            <tr>
+                <th scope="row" class="table-danger">{{p.nombre}}</th>
+                <td class="table-danger">{{p.fecha}}</td>
+                <td class="table-danger">{{p.precio}}</td>
+                <td class="table-danger">{{p.asiento}}</td>
+                <td class="table-danger">AGOTADO</td>    
+              </tr>
+          
+            {% elif p.asiento < 10 %}
+            <tr>
+                <th scope="row" class="table-warning">{{p.nombre}}</th>
+                <td class="table-warning">{{p.fecha}}</td>
+                <td class="table-warning">{{p.precio}}</td>
+                <td class="table-warning">{{p.asiento}}</td>
+                <td class="table-warning"><a href="#" class="btn btn-info">COMPRAR</a></td>    
+              </tr>
+              {% elif p.asiento >= 10 %}
+            <tr>
+                <th scope="row" class="table-success">{{p.nombre}}</th>
+                <td class="table-success">{{p.fecha}}</td>
+                <td class="table-success">{{p.precio}}</td>
+                <td class="table-success">{{p.asiento}}</td>
+                <td class="table-success"><a href="#" class="btn btn-info">COMPRAR</a></td>    
+              </tr>
+
+            {% endif %}
+    
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">Peliculas top-3</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="table-primary" scope="col">Posicion</th>
+                    <th class="table-primary" scope="col">Pelicula</th>
+                    <th class="table-primary" scope="col">Entradas vendidas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for t in top %}
+                    <tr>
+                        <th class="table-info" scope="row">{{ forloop.counter }}</th>
+                        <td class="table-info">{{t.nombre}}</td>
+                        <td class="table-info">{{t.entradasv}}</td>
+                        
+                      </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+        </div> 
+        <div class="col-md-6">
+            <h1 class="display-4">ENTRADAS</h1>
+            <div class="alert alert-info">Entrada desde: {{min}}</div>
+            <div class="alert alert-info">Promedio Precio: {{pro}}</div>
+            <div class="alert alert-info">mayor Precio: {{max}}</div>
+        </div>
+      </div>
+      <div class="alert alert-dark text-center">elseba copyright</div>
+    {% else %}
+    <div class="alert alert-danger display-1 text-center">NO HAY</div>
+    
+    {% endif %}
+</body>
+</html>
